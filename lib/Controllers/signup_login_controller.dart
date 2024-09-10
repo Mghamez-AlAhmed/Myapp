@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:socialmedia/Models/profaile_model.dart';
 import 'package:socialmedia/Views/home_scrrens.dart';
 import 'package:socialmedia/Views/login.dart';
-import 'package:socialmedia/services/sevices_setting.dart';
+import 'package:socialmedia/core/service_setting.dart';
 
 
 class fetcController extends GetxController {

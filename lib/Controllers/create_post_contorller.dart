@@ -4,8 +4,8 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:socialmedia/core/service_setting.dart';
 
-import 'package:socialmedia/services/sevices_setting.dart';
 
 class CreatePost extends GetxController {
   SevicesSetting c=  Get.find();

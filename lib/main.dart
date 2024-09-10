@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 
 import 'package:socialmedia/Views/home_scrrens.dart';
 import 'package:socialmedia/Views/start_app.dart';
-import 'package:socialmedia/middelwhere/authmiddelewhere.dart';
-import 'package:socialmedia/services/sevices_setting.dart';
+import 'package:socialmedia/core/authmiddleware.dart';
+import 'package:socialmedia/core/service_setting.dart';
+
 
 
 void main() async {

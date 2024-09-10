@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart'as http;
 import 'package:socialmedia/Models/comment_model.dart';
-import 'package:socialmedia/services/sevices_setting.dart';
+import 'package:socialmedia/core/service_setting.dart';
 
 class createcomments extends GetxController{
   TextEditingController textEditingController=TextEditingController();

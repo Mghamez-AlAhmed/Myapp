@@ -7,7 +7,7 @@ import 'package:socialmedia/Views/create_post.dart';
 import 'package:socialmedia/Views/my_profile.dart';
 import 'package:socialmedia/Views/start_app.dart';
 import 'package:socialmedia/Views/users_creens.dart';
-import 'package:socialmedia/services/sevices_setting.dart';
+import 'package:socialmedia/core/service_setting.dart';
 
 // ignore: must_be_immutable
 class PostsScreen extends StatelessWidget {
