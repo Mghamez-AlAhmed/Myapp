@@ -5,10 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:socialmedia/Api_Links/api_links.dart';
-
 import 'package:socialmedia/Models/profaile_model.dart';
-
 import 'package:socialmedia/Views/home_scrrens.dart';
 import 'package:socialmedia/Views/login.dart';
 import 'package:socialmedia/services/sevices_setting.dart';
@@ -52,7 +49,7 @@ void onInit() {
   Future<void> registerUserWithImage() async {
     try {
       if (myImage.value != null) {
-        var request = http.MultipartRequest('POST', Uri.parse(baseUrl));
+        var request = http.MultipartRequest('POST', Uri.parse("https://tarmeezacademy.com/api/v1/register"));
 
         request.fields['username'] = usernameController.text;
         request.fields['password'] = passwordController.text;
@@ -96,7 +93,7 @@ Future<void> loginrec() async {
       "username": usernameController.text,
       "password": passwordController.text,
     };
-    var url = Uri.parse(baseUrll);
+    var url = Uri.parse("https://tarmeezacademy.com/api/v1/login");
 
     var response = await http.post(url, body: body, headers: headers);
    
