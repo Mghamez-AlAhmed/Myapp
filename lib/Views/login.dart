@@ -78,8 +78,8 @@ class _LoginState extends State<Login> {
                             borderRadius: BorderRadius.circular(30),
                             gradient: const LinearGradient(
                               colors: [
-                                Color(0xffB81736),
-                                Color(0xff281537),
+                                Color(0xff4267B2), 
+                  Color(0xff3b5998),
                               ],
                             ),
                           ),

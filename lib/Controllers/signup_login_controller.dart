@@ -1,20 +1,25 @@
-// ignore: file_names
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:socialmedia/Api_Links/api_links.dart';
 
 import 'package:socialmedia/Models/profaile_model.dart';
 
 import 'package:socialmedia/Views/home_scrrens.dart';
+import 'package:socialmedia/Views/login.dart';
 import 'package:socialmedia/services/sevices_setting.dart';
 
 
-// ignore: camel_case_types
 class fetcController extends GetxController {
+  @override
+void onInit() {
+  super.onInit();
+  loadUserData();
+}
   
  
   TextEditingController usernameController = TextEditingController();
@@ -49,20 +54,16 @@ class fetcController extends GetxController {
       if (myImage.value != null) {
         var request = http.MultipartRequest('POST', Uri.parse(baseUrl));
 
-        // Adding form fields
         request.fields['username'] = usernameController.text;
         request.fields['password'] = passwordController.text;
         request.fields['name'] = nameController.text;
         request.fields['email'] = emailController.text;
 
-        // Adding the image file
         request.files.add(
             await http.MultipartFile.fromPath('image', myImage.value!.path));
 
-        // Sending the request
         var response = await request.send();
 
-        // Handling the response
         if (response.statusCode == 200) {
           Get.snackbar("Success", "Enjoy the app");
 
@@ -73,7 +74,7 @@ class fetcController extends GetxController {
 
           user.value = UserModel.fromJson(json);
 
-          Get.to(() => PostsScreen());
+          Get.offAll(() => const Login());
         } else {
           Get.snackbar("Error", "There are one or more empty fields");
         }
@@ -86,37 +87,77 @@ class fetcController extends GetxController {
   }
 
   
-  //for login
-  Future<void> loginrec() async {
-    try {
-      isLoading.value=true;
-      // ignore: non_constant_identifier_names
-      var Headers = {'Accept': 'application/json'};
-      Map body = {
-        "username": "tooken",
-        "password": "tooken1",
-      };
-      // ignore: non_constant_identifier_names
-      var Url = Uri.parse(baseUrll);
+Future<void> loginrec() async {
+  try {
+    isLoading.value = true;
 
-      var response = await http.post(Url, body: body, headers: Headers);
-      if (response.statusCode == 200) {
-        var json = jsonDecode(response.body);
-        var token = json["token"];
-      c.  sharedP!.setString("token", "$token");
+    var headers = {'Accept': 'application/json'};
+    Map body = {
+      "username": usernameController.text,
+      "password": passwordController.text,
+    };
+    var url = Uri.parse(baseUrll);
 
-                user.value = UserModel.fromJson(json);
+    var response = await http.post(url, body: body, headers: headers);
+   
+    
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.body);
+      var token = json["token"];
 
-isLoading.value=false;
-        Get.to(()=>PostsScreen(), transition: Transition.leftToRight);
+      await c.sharedP!.setString("token", token);
 
-      } else {
-        var json = jsonDecode(response.body);
-        var message = json["message"];
-        Get.snackbar("Erorr", message);
-      }
-    } catch (e) {
-      Get.snackbar("ss", e.toString());
+      user.value = UserModel.fromJson(json);
+
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('username', user.value.username ?? '');
+      await prefs.setString('name', user.value.name ?? '');
+      await prefs.setString('email', user.value.email ?? '');
+      await prefs.setString('profileImage', user.value.profileImage ?? '');
+      await prefs.setString('id', user.value.id?.toString() ?? '');
+      await prefs.setString('commentsCount', user.value.commentsCount?.toString() ?? '');
+      await prefs.setString('postsCount', user.value.postsCount?.toString() ?? '');
+
+      isLoading.value = false;
+
+      Get.offAll(() => PostsScreen(), );
+    } else {
+      var json = jsonDecode(response.body);
+      var message = json["message"];
+      Get.snackbar("Error", message);
     }
+  } catch (e) {
+    print("Error occurred: $e");
+    Get.snackbar("Error", e.toString());
+    isLoading.value = false;
   }
+}
+
+Future<void> loadUserData() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  String? username = prefs.getString('username');
+  String? name = prefs.getString('name');
+  String? email = prefs.getString('email');
+  String? profileImage = prefs.getString('profileImage');
+  String? id = prefs.getString('id');
+  String? commentsCount = prefs.getString('commentsCount');
+  String? postsCount = prefs.getString('postsCount');
+
+  if (username != null && name != null && email != null && profileImage != null) {
+    user.value = UserModel(
+      username: username,
+      name: name,
+      email: email,
+      id: int.tryParse(id ?? ''), 
+      profileImage: profileImage,
+      commentsCount: int.tryParse(commentsCount ?? ''),
+      postsCount: int.tryParse(postsCount ?? ''),
+    );
+  } else {
+    print("No user data found in SharedPreferences");
+  }
+}
+
+
 }
