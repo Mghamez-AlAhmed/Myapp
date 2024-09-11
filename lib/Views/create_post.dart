@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:socialmedia/Controllers/create_post_contorller.dart';
 
-// ignore: use_key_in_widget_constructors
 class PostView extends StatelessWidget {
   final controller = Get.put(CreatePost());
 

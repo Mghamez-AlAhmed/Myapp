@@ -12,7 +12,7 @@ class SignupCard extends StatefulWidget {
 }
 
 class _SignupCardState extends State<SignupCard> {
-  final controller = Get.put(fetcController());
+  final controller = Get.put(signup_login());
   XFile? myfile;
 
   @override

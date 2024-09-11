@@ -5,7 +5,7 @@ import 'package:socialmedia/Views/signup.dart';
 import 'package:socialmedia/Views/login.dart';
 
 class StartApp extends StatelessWidget {
-  final controller = Get.put(fetcController());
+  final controller = Get.put(signup_login());
 
   @override
   Widget build(BuildContext context) {

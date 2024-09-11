@@ -17,7 +17,6 @@ class UsersModel {
  this.postsCount,
   });
 
-  // Factory method to create a UserModel from JSON
   factory UsersModel.fromJson(Map<String, dynamic> json) {
     return UsersModel(
       username: json['username'],

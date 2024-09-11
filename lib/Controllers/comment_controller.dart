@@ -35,9 +35,8 @@ Get.snackbar("succsecful uploaded", "");
     return Commentmodel.fromJson(commentData);
     
   } else {
-    // في حالة حدوث خطأ، إظهار رسالة خطأ للمستخدم
     Get.snackbar("Error", "Failed to post comment");
-    return null; // إرجاع null إذا فشل نشر التعليق
+    return null; 
   }
 }
 

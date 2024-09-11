@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(appBarTheme: AppBarTheme(color: Colors.blue)),
-        // initialBinding: ControllerBindings(),
         initialRoute: "/startapp",
         getPages: [
           GetPage(
@@ -37,8 +36,7 @@ class MyApp extends StatelessWidget {
               name: "/startapp",
               page: () => StartApp(),
               middlewares: [AuthMiddleware()]),
-// GetPage(name: "/signup", page:()=> SignupCard(),middlewares: [AuthMiddleware()]),
-// GetPage(name: "/login", page:()=> Login(),middlewares: [AuthMiddleware()])
+
         ]);
   }
 }

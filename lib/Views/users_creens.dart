@@ -17,7 +17,7 @@ class _UserScreensState extends State<UserScreens> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: const Color(0xff4267B2), // Facebook blue color
+        backgroundColor: const Color(0xff4267B2), 
         title: const Text(
           'Users',
           style: TextStyle(

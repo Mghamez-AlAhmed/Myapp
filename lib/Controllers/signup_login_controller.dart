@@ -11,7 +11,7 @@ import 'package:socialmedia/Views/login.dart';
 import 'package:socialmedia/core/service_setting.dart';
 
 
-class fetcController extends GetxController {
+class signup_login extends GetxController {
   @override
 void onInit() {
   super.onInit();

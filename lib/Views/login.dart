@@ -11,7 +11,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final controller = Get.put(fetcController());
+  final controller = Get.put(signup_login());
 
   @override
   Widget build(BuildContext context) {

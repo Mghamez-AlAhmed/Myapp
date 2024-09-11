@@ -26,7 +26,7 @@ class PostScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: RefreshIndicator(
-                  onRefresh: _refreshComments,  // أضف RefreshIndicator
+                  onRefresh: _refreshComments,  
                   child: ListView(
                     padding: const EdgeInsets.all(16.0),
                     children: [

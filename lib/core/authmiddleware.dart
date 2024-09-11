@@ -12,7 +12,6 @@ class AuthMiddleware extends GetMiddleware {
     print("Token in middleware: ");
 
     if (token != null) {
-      print("${token}00000000000000000000000000000000000000000000");
       return const RouteSettings(name: '/home');
       
     }

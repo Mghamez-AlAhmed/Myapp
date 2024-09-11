@@ -19,7 +19,6 @@ class UserModel {
     this.token,
   });
 
-  // Factory method to create a UserModel from JSON
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       username: json['user']['username'],

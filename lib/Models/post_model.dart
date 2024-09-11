@@ -1,4 +1,3 @@
-// models/post_model.dart
 class Postvi {
   final int id;
   final String? title;

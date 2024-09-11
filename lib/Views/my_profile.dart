@@ -3,15 +3,14 @@ import 'package:get/get.dart';
 import 'package:socialmedia/Controllers/signup_login_controller.dart';
 
 class UserProfileScreen extends StatelessWidget {
-  // ignore: non_constant_identifier_names
-  final Controller = Get.put(fetcController(), permanent: true);
+  final Controller = Get.put(signup_login(), permanent: true);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: const Color(0xff4267B2), // Facebook blue color
+        backgroundColor: const Color(0xff4267B2), 
         title: const Text(
           'My Profile',
           style: TextStyle(
@@ -27,7 +26,7 @@ class UserProfileScreen extends StatelessWidget {
         child: Obx(() {
           final user = Controller.user.value;
 
-          // Save user data to SharedPreferences
+        
 
           return SingleChildScrollView(
             child: Column(
@@ -66,7 +65,7 @@ class UserProfileScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const Divider(), // Adding a divider for better content separation
+                const Divider(), 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

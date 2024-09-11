@@ -9,7 +9,6 @@ import 'package:socialmedia/Views/start_app.dart';
 import 'package:socialmedia/Views/users_creens.dart';
 import 'package:socialmedia/core/service_setting.dart';
 
-// ignore: must_be_immutable
 class PostsScreen extends StatelessWidget {
   final homecontroller Controller = Get.put(homecontroller());
   

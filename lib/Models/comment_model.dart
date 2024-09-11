@@ -33,5 +33,4 @@ class Commentmodel {
         createdat: json["author"]["created_at"]);
   }
 
-  void add(Commentmodel commentmodel) {}
 }
