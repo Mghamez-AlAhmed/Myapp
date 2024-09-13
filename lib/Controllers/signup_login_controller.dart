@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:socialmedia/Models/profaile_model.dart';
 import 'package:socialmedia/Views/home_scrrens.dart';
 import 'package:socialmedia/Views/login.dart';
@@ -106,14 +105,13 @@ Future<void> loginrec() async {
 
       user.value = UserModel.fromJson(json);
 
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('username', user.value.username ?? '');
-      await prefs.setString('name', user.value.name ?? '');
-      await prefs.setString('email', user.value.email ?? '');
-      await prefs.setString('profileImage', user.value.profileImage ?? '');
-      await prefs.setString('id', user.value.id?.toString() ?? '');
-      await prefs.setString('commentsCount', user.value.commentsCount?.toString() ?? '');
-      await prefs.setString('postsCount', user.value.postsCount?.toString() ?? '');
+      await c.sharedP!.setString('username', user.value.username ?? '');
+      await c.sharedP!.setString('name', user.value.name ?? '');
+      await c.sharedP!.setString('email', user.value.email ?? '');
+      await c.sharedP!.setString('profileImage', user.value.profileImage ?? '');
+      await c.sharedP!.setString('id', user.value.id?.toString() ?? '');
+      await c.sharedP!.setString('commentsCount', user.value.commentsCount?.toString() ?? '');
+      await c.sharedP!.setString('postsCount', user.value.postsCount?.toString() ?? '');
 
       isLoading.value = false;
 
@@ -131,15 +129,14 @@ Future<void> loginrec() async {
 }
 
 Future<void> loadUserData() async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  String? username = prefs.getString('username');
-  String? name = prefs.getString('name');
-  String? email = prefs.getString('email');
-  String? profileImage = prefs.getString('profileImage');
-  String? id = prefs.getString('id');
-  String? commentsCount = prefs.getString('commentsCount');
-  String? postsCount = prefs.getString('postsCount');
+  String? username = c.sharedP!.getString('username');
+  String? name = c.sharedP!.getString('name');
+  String? email =c.sharedP!.getString('email');
+  String? profileImage = c.sharedP!.getString('profileImage');
+  String? id = c.sharedP!.getString('id');
+  String? commentsCount = c.sharedP!.getString('commentsCount');
+  String? postsCount = c.sharedP!.getString('postsCount');
 
   if (username != null && name != null && email != null && profileImage != null) {
     user.value = UserModel(
