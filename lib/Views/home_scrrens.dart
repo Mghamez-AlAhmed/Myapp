@@ -48,16 +48,7 @@ class PostsScreen extends StatelessWidget {
             PopupMenuButton<int>(
               icon: const Icon(Icons.more_vert),
               itemBuilder: (context) => [
-                const PopupMenuItem(
-                  value: 1,
-                  child: Row(
-                    children: [
-                      Icon(Icons.add_a_photo_outlined, color: Colors.black54),
-                      SizedBox(width: 8),
-                      Text("New Post"),
-                    ],
-                  ),
-                ),
+             
                 PopupMenuItem(
                   value: 2,
                   child: Row(
