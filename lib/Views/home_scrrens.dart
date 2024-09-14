@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:socialmedia/Controllers/delete_post_controller.dart';
 import 'package:socialmedia/Controllers/home_controller.dart';
 import 'package:socialmedia/Controllers/show_post_controller.dart';
+import 'package:socialmedia/Controllers/signup_login_controller.dart';
 import 'package:socialmedia/Models/post_model.dart';
 import 'package:socialmedia/Views/create_post.dart';
 import 'package:socialmedia/Views/my_profile.dart';
@@ -11,10 +13,13 @@ import 'package:socialmedia/core/service_setting.dart';
 
 // ignore: must_be_immutable
 class PostsScreen extends StatelessWidget {
-  final homecontroller Controller = Get.put(homecontroller());
+  final homecontroller ontroller = Get.put(homecontroller());
   
   final Controoller = Get.put(ShowPostController());
+  final Contrller = Get.put(signup_login());
+
   SevicesSetting c = Get.find();
+  final deletepostcontroler= Get.put(DeletePost());
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +53,7 @@ class PostsScreen extends StatelessWidget {
             PopupMenuButton<int>(
               icon: const Icon(Icons.more_vert),
               itemBuilder: (context) => [
-             
+               
                 PopupMenuItem(
                   value: 2,
                   child: Row(
@@ -175,36 +180,43 @@ class PostsScreen extends StatelessWidget {
                 ),
               ),
             _buildPostFooter(post),
+
           ],
         ),
       ),
     );
   }
 
-  Widget _buildPostHeader(Postvi post) {
-    return ListTile(
-      leading: CircleAvatar(
-        radius: 25,
-        backgroundImage: post.pofeliimage != null &&
-                post.pofeliimage!.isNotEmpty
-            ? NetworkImage(post.pofeliimage!)
-            : const AssetImage("images/Screenshot (267).png") as ImageProvider,
-      ),
-      title: Text(
-        post.authorName,
-        style: const TextStyle(fontWeight: FontWeight.bold),
-      ),
-      subtitle: Text(
-        post.createdat,
-        style: TextStyle(color: Colors.grey[600]),
-      ),
-      trailing: IconButton(
-        icon: const Icon(Icons.more_vert),
-        onPressed: () {},
-      ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-    );
-  }
+ Widget _buildPostHeader(Postvi post) {
+  final currentUserId = Contrller.user.value.id; 
+
+  return ListTile(
+    leading: CircleAvatar(
+      radius: 25,
+      backgroundImage: post.pofeliimage != null && post.pofeliimage!.isNotEmpty
+          ? NetworkImage(post.pofeliimage!)
+          : const AssetImage("images/Screenshot (267).png") as ImageProvider,
+    ),
+    title: Text(
+      post.authorName,
+      style: const TextStyle(fontWeight: FontWeight.bold),
+    ),
+    subtitle: Text(
+      post.createdat,
+      style: TextStyle(color: Colors.grey[600]),
+    ),
+    trailing: post.idd == currentUserId 
+        ? IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () {
+              deletepostcontroler.deletePost(post.id); 
+            },
+          )
+        : null, 
+    contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+  );
+}
+
 
   Widget _buildPostFooter(Postvi post) {
     return Padding(

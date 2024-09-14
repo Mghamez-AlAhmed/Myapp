@@ -1,5 +1,8 @@
+// models/post_model.dart
 class Postvi {
   final int id;
+  final int idd;
+
   final String? title;
   final String body;
   final String authorName;
@@ -22,7 +25,8 @@ class Postvi {
     this.pofeliimage,
 
     required this.commentsCount,
-    required this.createdat,
+    required this.createdat, 
+    required this.idd,
 
   });
 
@@ -32,6 +36,7 @@ class Postvi {
       title: json['title'],
       body: json['body'],
       authorName: json['author']['name'],
+      idd:json['author']['id'],
       userName: json["author"]["username"],
       pofeliimage: json["author"]["profile_image"]??"",
       image: json['image'] ?? '',
