@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 class homecontroller extends GetxController{
 @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     fetchPosts();
   }

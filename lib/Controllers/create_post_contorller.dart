@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get.dart';
@@ -50,20 +49,14 @@ class CreatePost extends GetxController {
       request.headers.addAll(headers);
 
       var response = await request.send();
-        var responseBody = await response.stream.bytesToString();
-
-      print(responseBody);
+      
 
       if (response.statusCode == 201) {
 
         Get.back(result: true);
 
-        print('Data and image uploaded successfully');
         Get.snackbar("Success", "Post uploaded successfully");
 
-        var responseBody = await response.stream.bytesToString();
-        var json = jsonDecode(responseBody);
-        print(json);
       } else {
         Get.snackbar("Error", "Failed to upload post. Please try again.");
       }
